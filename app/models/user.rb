@@ -9,15 +9,15 @@ class User < ApplicationRecord
 
 with_options presence: true do
    validates :nickname
-  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'full-width characters' } do
    validates :first_name
    validates :last_name
   end
-  with_options format: { with: /\A[ァ-ヶ一-]/, message: '全角カタカナを使用してください' } do
+  with_options format: { with: /\A[ァ-ヶ一-]/, message: 'full-width katakana characters' } do
    validates :first_name_kana
    validates :last_name_kana
   end
    validates :birth_date
 end
-validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: '半角英数字を使用してください'} 
+validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'include both letters and numbers'} 
 end
