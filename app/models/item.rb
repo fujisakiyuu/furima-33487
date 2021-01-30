@@ -6,5 +6,5 @@ class Item < ApplicationRecord
   belongs_to :burden
   belongs_to :area
   belongs_to :day
-
+  has_one_attached :image
 end
