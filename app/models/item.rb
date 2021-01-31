@@ -16,7 +16,7 @@ class Item < ApplicationRecord
    validates :burden_id
    validates :area_id
    validates :day_id
-   validates :price
+   validates :price, numericality: { minimum: 300, maximum: 9999999 } 
    validates :image
  end
 
