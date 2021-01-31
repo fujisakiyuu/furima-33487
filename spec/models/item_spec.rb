@@ -53,7 +53,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
-      
+      it '価格が全角だと登録できない' do
+        @item.price = '１００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price Half-width number"
+      end
+      it '価格の範囲が¥300~¥9999999以外だと登録できない' do
+        @item.price = '100'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is not included in the list"
+      end
+
+
   end
  end
 end

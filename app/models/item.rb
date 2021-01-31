@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :day
   has_one_attached :image
 
-  with_options presence: true do
+with_options presence: true do
    validates :product_name
    validates :explanation
    validates :category_id
@@ -16,7 +16,9 @@ class Item < ApplicationRecord
    validates :burden_id
    validates :area_id
    validates :day_id
-   validates :price, numericality: { minimum: 300, maximum: 9999999 } 
+  with_options numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
+   validates :price, inclusion: { in: 300..9999999 }
+  end
    validates :image
  end
 
