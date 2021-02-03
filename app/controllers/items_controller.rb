@@ -30,11 +30,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to item_path
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+   end
   end
-
 
   private
 
@@ -50,7 +52,7 @@ def move_to_index
 end
 
 def cheak_user
-  unless  item_user == @item.user
+  unless  current_user == @item.user#今現在ログインしてるユーザーが出品者じゃなければ
     redirect_to action: :index
   end
 end
