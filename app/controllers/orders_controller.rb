@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
   before_action :item_user, only: [:index, :create]
+  before_action :cheak_user, only: [:edit]
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @user_order = UserOrder.new
   end
@@ -41,13 +44,18 @@ class OrdersController < ApplicationController
   # def address_params(order)
   #   params.require(:user_order).permit(:postal_code, :area_id, :municipality, :address, :building, :phone_number).merge(order_id: order.id )
   # end
-
-
-
+  
 
   def item_user
     @item = Item.find(params[:item_id])
   end
+
+  def cheak_user
+    unless  current_user == @item.user#今現在ログインしてるユーザーが出品者じゃなければ
+      redirect_to action: :index
+    end
+  end
+
   
   def pay_item
  

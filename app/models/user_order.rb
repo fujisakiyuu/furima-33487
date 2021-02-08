@@ -7,7 +7,7 @@ class UserOrder
     validates :area_id
     validates :municipality
     validates :address
-    validates :phone_number
+    validates :phone_number, length: { maximum: 11 }
     validates :token
   end
 

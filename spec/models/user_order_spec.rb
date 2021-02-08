@@ -7,6 +7,7 @@ RSpec.describe UserOrder, type: :model do
     end
 
     it 'すべての値が正しく入力されていれば保存できること' do
+      expect(@user_order).to be_valid
     end
     it 'postal_codeが空だと保存できないこと' do
       @user_order.postal_code = nil
@@ -38,6 +39,11 @@ RSpec.describe UserOrder, type: :model do
       @user_order.phone_number= nil
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Phone number can't be blank")
+    end
+    it 'phone_numberが12桁以上だと保存できないこと' do
+      @user_order.phone_number= '012345678910'
+      @user_order.valid?
+      expect(@user_order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
     end
     it "tokenが空では登録できないこと" do
       @user_order.token = nil
