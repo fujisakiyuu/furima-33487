@@ -46,7 +46,7 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Address can't be blank")
       end
-      it 'が空だと保存できないこと' do
+      it '電話番号が空だと保存できないこと' do
         @user_order.phone_number= nil
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Phone number can't be blank")
