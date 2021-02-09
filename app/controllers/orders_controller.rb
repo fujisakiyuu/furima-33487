@@ -8,9 +8,7 @@ class OrdersController < ApplicationController
   end
 
 
-  def new
-    @user_order = UserOrder.new   
-  end 
+
 
 
   
