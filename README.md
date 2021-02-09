@@ -14,7 +14,7 @@
 
 ### Association
 has_many :items
-has_many :buys
+has_many :orders
 
 ## items table <!-- 商品情報 -->
 
@@ -34,7 +34,7 @@ has_many :buys
 belongs_to :user
 has_one :buy
 
-## buys table <!-- 購入記録 -->
+## orders table <!-- 購入記録 -->
 
 | Column           | Type       | Options              |  
 | -----------------| -----------| ---------------------|
@@ -44,9 +44,9 @@ has_one :buy
 ### Association
 belongs_to :user
 belongs_to :item
-has_one :street_address
+has_one :address
 
-## street_address table <!-- 配達先住所 -->
+## address table <!-- 配達先住所 -->
 
 | Column           | Type       | Options     |
 | -----------------| -----------| ----------- |
@@ -56,7 +56,7 @@ has_one :street_address
 | address          | string     | null: false | <!-- 番地    --> 
 | building         | string     |             | <!-- 建物名  -->
 | phone_number     | string     | null: false | <!-- 電話番号 -->
-| buy              | references |  foreign_key: true     | <!-- 購入記録の外部キー  -->
+| order            | references |  foreign_key: true     | <!-- 購入記録の外部キー  -->
 
 ### Association
-belong_to :buy
+belong_to :order
