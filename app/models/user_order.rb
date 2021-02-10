@@ -7,12 +7,13 @@ class UserOrder
     validates :area_id, numericality: { other_than: 1 }
     validates :municipality
     validates :address
-    validates :phone_number, length: { maximum: 11 }
     validates :token
     validates :user_id
     validates :item_id
+  with_options numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
+    validates :phone_number, length: { maximum: 11 }
   end
-
+end
   
 
   def save

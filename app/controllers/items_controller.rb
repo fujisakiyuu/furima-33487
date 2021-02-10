@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return redirect_to root_path if current_user != @item.user || @item.order.present?
   end
 
   def update
@@ -51,7 +52,7 @@ end
 
 
 def cheak_user
-  unless  current_user == @item.user#今現在ログインしてるユーザーが出品者じゃなければ
+  unless  current_user == @item.user
     redirect_to action: :index
   end
 end
